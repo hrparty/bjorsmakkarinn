@@ -11,7 +11,7 @@ class BeerRater extends Component {
       colorRating: 0,
       smellRating: 0,
       tasteRating: 0,
-      comment: 'Yðar umsögn um bjórinn.'
+      comment: ''
     };
   }
 
@@ -43,6 +43,7 @@ class BeerRater extends Component {
             <textarea
               value={this.state.comment}
               onChange={this.handleCommentChange}
+              placeholder="Yðar umsögn um bjórinn"
             />
           </li>
         </ul>
