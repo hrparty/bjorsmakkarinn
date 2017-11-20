@@ -15,10 +15,24 @@ class BeerRater extends Component {
     };
   }
 
-  handleRatingChange = (value, fieldName) => {};
+  doStateUpdate = update => {
+    const { beerId, onRatingChange } = this.props;
+
+    onRatingChange(Object.assign({ beerId: beerId }, this.state, update));
+    this.setState(update);
+  };
+
+  handleRatingChange = (newValue, fieldName) => {
+    // Do some stupid client side stuff to avoid values that are not allowed
+    newValue = Math.round(Number(newValue));
+    if (newValue < 0) newValue = 0;
+    if (newValue > 10) newValue = 10;
+
+    this.doStateUpdate({ [fieldName]: newValue });
+  };
 
   handleCommentChange = event => {
-    this.setState({ comment: event.target.value });
+    this.doStateUpdate({ comment: event.target.value });
   };
 
   render() {
@@ -33,6 +47,7 @@ class BeerRater extends Component {
           {fieldNames.map((fieldName, i) => (
             <li key={fieldName}>
               <NumericalRating
+                value={this.state[fieldName]}
                 fieldName={fieldName}
                 label={labels[i]}
                 onValueChange={this.handleRatingChange}
@@ -53,7 +68,9 @@ class BeerRater extends Component {
 }
 
 BeerRater.PropTypes = {
-  beerName: PropTypes.number.isRequired
+  beerId: PropTypes.number.isRequired,
+  beerName: PropTypes.string.isRequired,
+  onRatingChange: PropTypes.func.isRequired
 };
 
 export default BeerRater;

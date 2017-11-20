@@ -3,6 +3,10 @@ import BeerRater from '../beer-rater/BeerRater';
 import './BeerRaterList.css';
 
 class BeerRaterList extends Component {
+  handleRatingChange = newRating => {
+    console.log('rating changed', newRating);
+  };
+
   render() {
     const numberOfBeers = 12;
     const beers = [];
@@ -10,7 +14,11 @@ class BeerRaterList extends Component {
     for (let i = 1; i <= numberOfBeers; i++) {
       beers.push(
         <li key={i}>
-          <BeerRater beerName={'Bjór ' + i} />
+          <BeerRater
+            beerId={i}
+            beerName={'Bjór ' + i}
+            onRatingChange={this.handleRatingChange}
+          />
         </li>
       );
     }
