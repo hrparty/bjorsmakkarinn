@@ -67,7 +67,7 @@ class BeerRater extends Component {
   }
 }
 
-BeerRater.PropTypes = {
+BeerRater.propTypes = {
   beerId: PropTypes.number.isRequired,
   beerName: PropTypes.string.isRequired,
   onRatingChange: PropTypes.func.isRequired
