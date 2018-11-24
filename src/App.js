@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import BeerRaterList from './beer-rater-list/BeerRaterList';
-import RaterName from './rater-name/RaterName';
-import './App.css';
+import React, { Component } from "react";
+import BeerRaterList from "./beer-rater-list/BeerRaterList";
+import RaterName from "./rater-name/RaterName";
+import "./App.scss";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      raterName: ''
+      raterName: ""
     };
   }
 

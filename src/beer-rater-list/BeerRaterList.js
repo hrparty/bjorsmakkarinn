@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import BeerRater from '../beer-rater/BeerRater';
-import './BeerRaterList.css';
+import React, { Component } from "react";
+import BeerRater from "../beer-rater/BeerRater";
+import "./BeerRaterList.css";
 
 class BeerRaterList extends Component {
   handleRatingChange = newRating => {
-    console.log('rating changed', newRating);
+    console.log("rating changed", newRating);
   };
 
   render() {
-    const numberOfBeers = 12;
+    const numberOfBeers = 16;
     const beers = [];
 
     for (let i = 1; i <= numberOfBeers; i++) {
@@ -16,7 +16,7 @@ class BeerRaterList extends Component {
         <li key={i}>
           <BeerRater
             beerId={i}
-            beerName={'Bjór ' + i}
+            beerName={"Bjór " + i}
             onRatingChange={this.handleRatingChange}
           />
         </li>

@@ -1,0 +1,10 @@
+.beer-rater {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &-comments > textarea {
+    width: 95%;
+    height: 6em;
+  }
+}
