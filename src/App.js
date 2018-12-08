@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import firebase from "./firebase";
 import BeerRaterList from "./beer-rater-list/BeerRaterList";
-import RaterName from "./rater-name/RaterName";
+import Login from "./login/Login";
 import "./App.scss";
 
 class App extends Component {
@@ -8,19 +9,23 @@ class App extends Component {
     super(props);
 
     this.state = {
-      raterName: ""
+      user: null
     };
   }
 
-  handleRaterNameChanged = newName => {
-    this.setState({ raterName: newName });
-  };
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+      if (user) {
+        this.setState({ user: user });
+      }
+    });
+  }
 
   render() {
     return (
       <div className="app">
-        <RaterName onNameChange={this.handleRaterNameChanged} />
-        <BeerRaterList />
+        {this.state.user ? <BeerRaterList user={this.state.user} /> : <Login />}
       </div>
     );
   }
