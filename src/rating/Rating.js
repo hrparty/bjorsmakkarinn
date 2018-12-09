@@ -19,10 +19,10 @@ class Rating extends Component {
         <input
           id={fieldName}
           value={value}
-          type="range"
+          type="number"
           min="0"
           max="10"
-          step="1"
+          step="0.5"
           onChange={this.handleChange}
           className="value-selector"
         />

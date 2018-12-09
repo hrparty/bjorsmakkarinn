@@ -4,27 +4,27 @@ import Rating from "../rating/Rating";
 import "./BeerRater.scss";
 
 class BeerRater extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      colorRating: 0,
-      smellRating: 0,
-      tasteRating: 0,
-      comment: ""
-    };
-  }
-
   doStateUpdate = update => {
-    const { beerId, onRatingChange } = this.props;
+    const {
+      beerId,
+      colorRating,
+      smellRating,
+      tasteRating,
+      comment,
+      onRatingChange
+    } = this.props;
 
-    onRatingChange(Object.assign({ beerId: beerId }, this.state, update));
-    this.setState(update);
+    onRatingChange(
+      Object.assign(
+        { beerId, colorRating, smellRating, tasteRating, comment },
+        update
+      )
+    );
   };
 
   handleRatingChange = (newValue, fieldId) => {
-    // Do some stupid client side stuff to avoid values that are not allowed
-    newValue = Math.round(Number(newValue));
+    newValue = parseFloat(newValue);
+
     if (newValue < 0) newValue = 0;
     if (newValue > 10) newValue = 10;
 
@@ -49,8 +49,8 @@ class BeerRater extends Component {
             return (
               <li key={fieldId}>
                 <Rating
-                  value={this.state[fieldId]}
-                  fieldName={fieldId}
+                  value={this.props[fieldName]}
+                  fieldName={fieldName}
                   label={labels[i]}
                   onValueChange={this.handleRatingChange}
                 />
@@ -61,7 +61,7 @@ class BeerRater extends Component {
             <label htmlFor={"umsogn" + beerId}>Umsögn</label>
             <textarea
               id={"umsogn" + beerId}
-              value={this.state.comment}
+              value={this.props.comment}
               onChange={this.handleCommentChange}
               placeholder="Yðar umsögn um bjórinn"
             />
@@ -75,7 +75,18 @@ class BeerRater extends Component {
 BeerRater.propTypes = {
   beerId: PropTypes.number.isRequired,
   beerName: PropTypes.string.isRequired,
-  onRatingChange: PropTypes.func.isRequired
+  onRatingChange: PropTypes.func.isRequired,
+  colorRating: PropTypes.number,
+  smellRating: PropTypes.number,
+  tasteRating: PropTypes.number,
+  comment: PropTypes.string
+};
+
+BeerRater.defaultProps = {
+  colorRating: 0,
+  smellRating: 0,
+  tasteRating: 0,
+  comment: ""
 };
 
 export default BeerRater;
