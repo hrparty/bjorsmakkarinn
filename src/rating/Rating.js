@@ -19,7 +19,7 @@ class Rating extends Component {
         <input
           id={fieldName}
           value={value}
-          type="number"
+          type="range"
           min="0"
           max="10"
           step="0.5"

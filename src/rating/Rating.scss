@@ -1,6 +1,54 @@
+@mixin track() {
+  width: 100%;
+  height: 1px;
+  cursor: pointer;
+  background: #ccc;
+}
+
+@mixin slider() {
+  width: 36px;
+  height: 36px;
+  border: none;
+  cursor: pointer;
+  margin-top: -19px;
+  background: #fff url(./beer.svg) no-repeat;
+}
+
 .value-selector {
-  width: 95%;
+  width: 85%;
   margin-top: 5px;
+  border: none;
+  padding: 15px 0;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track();
+  }
+
+  &::-ms-track {
+    @include track();
+  }
+
+  &::-moz-range-track {
+    @include track();
+  }
+
+  &::-webkit-slider-thumb {
+    @include slider();
+    -webkit-appearance: none;
+  }
+
+  &::-ms-thumb {
+    @include slider();
+  }
+
+  &::-moz-range-thumb {
+    @include slider();
+  }
 }
 
 .value-display {
