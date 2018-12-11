@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import firebase from "../firebase";
+import firebase, { db } from "../firebase";
 import BeerRater from "../BeerRater/BeerRater";
 import "./BeerRaterList.css";
 
@@ -41,9 +41,6 @@ class BeerRaterList extends Component {
       firebase.auth().currentUser && firebase.auth().currentUser.uid;
 
     if (!userId) return;
-
-    const db = firebase.firestore();
-    db.settings({ timestampsInSnapshots: true });
 
     Object.keys(this.state.beers).forEach(key => {
       const dbUpdate = Object.assign({}, this.state.beers[key], {
