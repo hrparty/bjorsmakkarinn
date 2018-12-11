@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import firebase from "./firebase";
-import BeerRaterList from "./beer-rater-list/BeerRaterList";
-import Login from "./login/Login";
+import BeerRaterList from "./BeerRaterList/BeerRaterList";
+import RatingResults from "./RatingResults/RatingResults";
+import Login from "./Login/Login";
 import "./App.scss";
+
+const NotFound = () => <div>Page not found!</div>;
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +28,17 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        {this.state.user ? <BeerRaterList /> : <Login />}
+        {!this.state.user ? (
+          <Login />
+        ) : (
+          <Router>
+            <Switch>
+              <Route path="/" exact component={BeerRaterList} />
+              <Route path="/rating/:id/results" component={RatingResults} />
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
+        )}
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Rating from "../rating/Rating";
+import Rating from "../Rating/Rating";
 import "./BeerRater.scss";
 
 class BeerRater extends Component {

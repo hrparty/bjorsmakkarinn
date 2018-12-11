@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase from "../firebase";
-import BeerRater from "../beer-rater/BeerRater";
+import BeerRater from "../BeerRater/BeerRater";
 import "./BeerRaterList.css";
 
 class BeerRaterList extends Component {
