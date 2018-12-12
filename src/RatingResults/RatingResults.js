@@ -5,7 +5,7 @@ class RatingResults extends React.Component {
   constructor(props) {
     super(props);
 
-    this.ratingSessionId = props.match.params.id;
+    this.ratingSessionId = parseInt(props.match.params.id);
     this.dbUnsubscribe = null;
 
     this.state = {
@@ -20,7 +20,7 @@ class RatingResults extends React.Component {
       .onSnapshot(querySnapshot => {
         const allRatings = [];
 
-        querySnapshot.foreach(document => {
+        querySnapshot.forEach(document => {
           allRatings.push(document.data());
         });
 
@@ -37,10 +37,12 @@ class RatingResults extends React.Component {
   }
 
   render() {
+    const { allRatings } = this.state;
+
     return (
       <ul>
-        {this.state.allRatings.map(rating => (
-          <li>{rating.beerId}</li>
+        {allRatings.map(rating => (
+          <li>{rating.comment}</li>
         ))}
       </ul>
     );
