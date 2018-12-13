@@ -72,8 +72,6 @@ class BeerRaterList extends Component {
     newState[newRating.beerId] = newRating;
     localStorage.setItem(this.storageKey, JSON.stringify(newState));
 
-    console.log("Setting new state", newState);
-
     this.setState({
       beers: newState
     });
@@ -94,6 +92,7 @@ class BeerRaterList extends Component {
             colorRating={beerData.colorRating}
             smellRating={beerData.smellRating}
             tasteRating={beerData.tasteRating}
+            totalRating={beerData.totalRating}
             comment={beerData.comment}
             onRatingChange={this.handleRatingChange}
           />
