@@ -10,14 +10,14 @@ class BeerRater extends Component {
       colorRating,
       smellRating,
       tasteRating,
-      totalRating,
+      xmasRating,
       comment,
       onRatingChange
     } = this.props;
 
     onRatingChange(
       Object.assign(
-        { beerId, colorRating, smellRating, tasteRating, totalRating, comment },
+        { beerId, colorRating, smellRating, tasteRating, xmasRating, comment },
         update
       )
     );
@@ -42,7 +42,7 @@ class BeerRater extends Component {
       "colorRating",
       "smellRating",
       "tasteRating",
-      "totalRating"
+      "xmasRating"
     ];
     const labels = ["Litur", "Fnykur", "Bragð", "Andi jólanna"];
 
@@ -85,7 +85,7 @@ BeerRater.propTypes = {
   colorRating: PropTypes.number,
   smellRating: PropTypes.number,
   tasteRating: PropTypes.number,
-  totalRating: PropTypes.number,
+  xmasRating: PropTypes.number,
   comment: PropTypes.string
 };
 
@@ -93,7 +93,7 @@ BeerRater.defaultProps = {
   colorRating: 0,
   smellRating: 0,
   tasteRating: 0,
-  totalRating: 0,
+  xmasRating: 0,
   comment: ""
 };
 

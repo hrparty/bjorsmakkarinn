@@ -92,7 +92,7 @@ class BeerRaterList extends Component {
             colorRating={beerData.colorRating}
             smellRating={beerData.smellRating}
             tasteRating={beerData.tasteRating}
-            totalRating={beerData.totalRating}
+            xmasRating={beerData.xmasRating}
             comment={beerData.comment}
             onRatingChange={this.handleRatingChange}
           />
