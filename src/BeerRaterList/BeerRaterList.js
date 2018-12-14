@@ -16,9 +16,27 @@ class BeerRaterList extends Component {
     }:${this.ratingSessionId}`;
 
     this.state = {
-      beers: {}
+      beers: this.createInitialState()
     };
   }
+
+  createInitialState = () => {
+    const numberOfBeers = 16;
+    const beers = {};
+
+    for (let i = 1; i <= numberOfBeers; i++) {
+      beers[i] = {
+        beerId: i,
+        colorRating: 0,
+        smellRating: 0,
+        tasteRating: 0,
+        xmasRating: 0,
+        comment: ""
+      };
+    }
+
+    return beers;
+  };
 
   componentDidMount() {
     this.intervalId = setInterval(this.saveToDb, 20000);
@@ -27,7 +45,7 @@ class BeerRaterList extends Component {
 
     if (prevSession) {
       this.setState({
-        beers: JSON.parse(prevSession)
+        beers: Object.assign({}, this.state.beers, JSON.parse(prevSession))
       });
     }
   }
@@ -78,29 +96,24 @@ class BeerRaterList extends Component {
   };
 
   render() {
-    const numberOfBeers = 16;
-    const beers = [];
-
-    for (let i = 1; i <= numberOfBeers; i++) {
-      const beerData = this.state.beers[i] || {};
-
-      beers.push(
-        <li key={i}>
-          <BeerRater
-            beerId={i}
-            beerName={"Bjór " + i}
-            colorRating={beerData.colorRating}
-            smellRating={beerData.smellRating}
-            tasteRating={beerData.tasteRating}
-            xmasRating={beerData.xmasRating}
-            comment={beerData.comment}
-            onRatingChange={this.handleRatingChange}
-          />
-        </li>
-      );
-    }
-
-    return <ul className="beer-rater-list">{beers}</ul>;
+    return (
+      <ul className="beer-rater-list">
+        {Object.values(this.state.beers).map(beerData => (
+          <li key={beerData.beerId}>
+            <BeerRater
+              beerId={beerData.beerId}
+              beerName={"Bjór " + beerData.beerId}
+              colorRating={beerData.colorRating}
+              smellRating={beerData.smellRating}
+              tasteRating={beerData.tasteRating}
+              xmasRating={beerData.xmasRating}
+              comment={beerData.comment}
+              onRatingChange={this.handleRatingChange}
+            />
+          </li>
+        ))}
+      </ul>
+    );
   }
 }
 
