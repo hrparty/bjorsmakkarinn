@@ -48,6 +48,17 @@ class RatingResults extends React.Component {
     const avgTaste = averageRatingByBeer(allRatings, "taste");
     const avgXmas = averageRatingByBeer(allRatings, "xmas");
     const avgTotal = averageRatingByBeer(allRatings, "total");
+    const options = {
+      scales: {
+        xAxes: [
+          {
+            ticks: {
+              max: 10
+            }
+          }
+        ]
+      }
+    };
 
     return (
       <div className="rating-results">
@@ -55,6 +66,7 @@ class RatingResults extends React.Component {
 
         <h2>Glæsilegasti bjórinn</h2>
         <HorizontalBar
+          options={options}
           data={{
             labels: avgColors.map(c => c.beerId),
             datasets: [
@@ -73,6 +85,7 @@ class RatingResults extends React.Component {
 
         <h2>Fnykbesti bjórinn</h2>
         <HorizontalBar
+          options={options}
           data={{
             labels: avgSmell.map(c => c.beerId),
             datasets: [
@@ -91,6 +104,7 @@ class RatingResults extends React.Component {
 
         <h2>Bragðbesti bjórinn</h2>
         <HorizontalBar
+          options={options}
           data={{
             labels: avgTaste.map(c => c.beerId),
             datasets: [
@@ -109,6 +123,7 @@ class RatingResults extends React.Component {
 
         <h2>Mesti jólaandinn</h2>
         <HorizontalBar
+          options={options}
           data={{
             labels: avgXmas.map(c => c.beerId),
             datasets: [
@@ -127,6 +142,7 @@ class RatingResults extends React.Component {
 
         <h2>Bestur á landi hér</h2>
         <HorizontalBar
+          options={options}
           data={{
             labels: avgTotal.map(c => c.beerId),
             datasets: [
