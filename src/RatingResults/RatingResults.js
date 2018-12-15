@@ -1,7 +1,8 @@
 import React from "react";
 import { HorizontalBar } from "react-chartjs-2";
 import { db } from "../firebase";
-import { addTotalRating, averageRatingByBeer } from "./calculator";
+import { beerIds, addTotalRating, averageRatingByBeer } from "./calculator";
+import BeerResults from "./BeerResults";
 
 class RatingResults extends React.Component {
   constructor(props) {
@@ -141,6 +142,11 @@ class RatingResults extends React.Component {
             ]
           }}
         />
+
+        <h2>Allar niðurstöður</h2>
+        {beerIds().map(bid => {
+          return <BeerResults bid={bid} allRatings={allRatings} />;
+        })}
       </div>
     );
   }

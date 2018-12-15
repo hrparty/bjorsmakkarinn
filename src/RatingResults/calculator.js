@@ -1,4 +1,4 @@
-const beerIds = () => {
+export const beerIds = () => {
   const numberOfBeers = 16;
   const beerIds = [];
 
