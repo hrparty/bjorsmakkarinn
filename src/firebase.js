@@ -14,6 +14,7 @@ const app = firebase.apps.length
     });
 
 const db = app.firestore();
-db.settings({ timestampsInSnapshots: true });
 
-export { app as default, db };
+const userId = () => app.auth().currentUser && app.auth().currentUser.uid;
+
+export { app as default, db, userId };

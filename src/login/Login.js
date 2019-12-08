@@ -1,6 +1,6 @@
 import React from "react";
 import firebase from "firebase/app";
-import firebaseui from "firebaseui";
+import * as firebaseui from "firebaseui";
 import "firebase/auth";
 import "firebaseui/dist/firebaseui.css";
 
