@@ -40,9 +40,13 @@ const BeerRaterList = () => {
 
       console.log("fetched from db", ratings);
 
-      setBeers(ratings);
+      if (Object.keys(ratings).length) {
+        setBeers(ratings);
+      }
+
       setHasFetched(true);
     };
+
     fetchRatings();
   }, [ratingSessionId]);
 
