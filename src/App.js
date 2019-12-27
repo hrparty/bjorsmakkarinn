@@ -10,7 +10,9 @@ import "./App.scss";
 const NotFound = () => <div>Page not found!</div>;
 
 const App = () => {
-  const user = useUser();
+  const [userLoaded, user] = useUser();
+
+  if (!userLoaded) return null;
 
   return (
     <div className="app">
