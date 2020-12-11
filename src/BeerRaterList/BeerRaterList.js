@@ -29,7 +29,7 @@ const BeerRaterList = () => {
         .where("ratingSessionId", "==", ratingSessionId)
         .get();
 
-      querySnapshot.forEach(doc => {
+      querySnapshot.forEach((doc) => {
         const data = { ...doc.data() };
 
         // Remove timestamp so lastSavedState will function correctly
@@ -54,11 +54,11 @@ const BeerRaterList = () => {
     if (!hasFetched) return;
     if (!userId()) return;
 
-    Object.keys(beers).forEach(key => {
+    Object.keys(beers).forEach((key) => {
       const dbUpdate = {
         ...beers[key],
         ratingSessionId: ratingSessionId,
-        userId: userId()
+        userId: userId(),
       };
 
       // Only update if data changed
@@ -67,7 +67,7 @@ const BeerRaterList = () => {
       const documentId = `${key}:${ratingSessionId}:${userId()}`;
       const dbUpdateWithMetadata = {
         ...dbUpdate,
-        updatedAt: Date.now()
+        updatedAt: Date.now(),
       };
 
       db.collection("beerRatings")
@@ -80,7 +80,7 @@ const BeerRaterList = () => {
     });
   };
 
-  const handleRatingChange = newRating => {
+  const handleRatingChange = (newRating) => {
     const newState = { ...beers };
     newState[newRating.beerId] = newRating;
     setBeers(newState);
@@ -88,7 +88,7 @@ const BeerRaterList = () => {
 
   return (
     <ul className="beer-rater-list">
-      {Object.values(beers).map(beerData => (
+      {Object.values(beers).map((beerData) => (
         <li key={beerData.beerId}>
           <BeerRater
             beerId={beerData.beerId}
@@ -117,7 +117,7 @@ const createInitialState = () => {
       smellRating: 0,
       tasteRating: 0,
       xmasRating: 0,
-      comment: ""
+      comment: "",
     };
   }
 
